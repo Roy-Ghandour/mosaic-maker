@@ -1,0 +1,52 @@
+name: Deploy Client to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+    paths:
+      - 'client/**'
+      - 'wrangler.jsonc'
+      - 'package.json'
+      - 'bun.lock'
+
+jobs:
+  pages-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install root dependencies
+        run: bun install
+
+      - name: Install client dependencies
+        run: cd client && bun install
+
+      - name: Build client
+        run: cd client && bun run build
+
+      - name: Deploy to staging Pages
+        if: github.ref == 'refs/heads/staging'
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: mosaic-maker-frontend-staging
+          directory: client/dist
+
+      - name: Deploy to production Pages
+        if: github.ref == 'refs/heads/main'
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: mosaic-maker-frontend-production
+          directory: client/dist

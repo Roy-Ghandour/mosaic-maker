@@ -5,9 +5,14 @@ on:
     branches:
       - main
       - staging
+    paths:
+      - 'server/**'
+      - 'wrangler.jsonc'
+      - 'package.json'
+      - 'bun.lock'
 
 jobs:
-  deploy:
+  worker-deploy:
     runs-on: ubuntu-latest
 
     steps:
