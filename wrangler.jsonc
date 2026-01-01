@@ -4,10 +4,10 @@
   "compatibility_date": "2026-01-01",
   "env": {
     "staging": {
-      "name": "mosaic-maker-server-staging"
+      "name": "mosaic-maker-server-staging",
     },
     "production": {
-      "name": "mosaic-maker-server-production"
-    }
-  }
+      "name": "mosaic-maker-server-production",
+    },
+  },
 }
