@@ -7,7 +7,6 @@ on:
       - staging
     paths:
       - 'server/**'
-      - 'src/**'
       - 'wrangler.jsonc'
       - 'package.json'
       - 'bun.lock'
