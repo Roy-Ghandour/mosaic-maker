@@ -23,7 +23,7 @@ function App() {
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">This is a change on the frontend</p>
+      <p className="read-the-docs">This is a change on the frontend. This is another change</p>
     </>
   );
 }
