@@ -7,11 +7,12 @@ on:
       - staging
     paths:
       - 'client/**'
+      - 'wrangler.jsonc'
       - 'package.json'
       - 'bun.lock'
 
 jobs:
-  deploy:
+  pages-deploy:
     runs-on: ubuntu-latest
 
     steps:

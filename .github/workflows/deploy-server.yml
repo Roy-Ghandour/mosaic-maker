@@ -12,7 +12,7 @@ on:
       - 'bun.lock'
 
 jobs:
-  deploy:
+  worker-deploy:
     runs-on: ubuntu-latest
 
     steps:
